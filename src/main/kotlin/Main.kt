@@ -3,11 +3,24 @@ import java.io.File
 fun main() {
     println("ByteBloom Academy: Ecosystem Project Starter")
     println("✅ Project setup is correct and runnable.")
-    println("welcom the marebits team")
+
     val the_new_mentees=parseMenteeRaw()
+    if(the_new_mentees!=null){
+        println("$the_new_mentees")
+        println("totel mentees : {${the_new_mentees.size}}")
+    }else
+    {
+        println("no  find data on mentees file")
+    }
     val the_new_performance= parsePerformanceRaw()
-    println("$the_new_mentees")
-    println("$the_new_performance")
+    if(the_new_performance!=null){
+        println("$the_new_performance")
+        println("totel preformance : {${the_new_performance.size}}")
+    }else
+    {
+        println("no  find data on predormance file")
+    }
+
 
 
 }

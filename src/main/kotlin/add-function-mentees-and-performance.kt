@@ -1,7 +1,7 @@
 import com.bytebloom.model.raw.MenteeRaw
 import com.bytebloom.model.raw.PerformanceRaw
 import java.io.File
-//
+
 val lines_of_mentee = File("src/main/resources/mentees.csv").readLines().drop(1)
 fun parseMenteeRaw(): List<MenteeRaw> {
        return  lines_of_mentee.map {
