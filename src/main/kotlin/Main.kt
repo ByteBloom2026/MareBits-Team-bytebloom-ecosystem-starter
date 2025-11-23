@@ -6,7 +6,6 @@ fun main() {
 
     val the_new_mentees=parseMenteeRaw()
     if(the_new_mentees!=null){
-        println("$the_new_mentees")
         println("totel mentees : {${the_new_mentees.size}}")
     }else
     {
@@ -14,7 +13,6 @@ fun main() {
     }
     val the_new_performance= parsePerformanceRaw()
     if(the_new_performance!=null){
-        println("$the_new_performance")
         println("totel preformance : {${the_new_performance.size}}")
     }else
     {
