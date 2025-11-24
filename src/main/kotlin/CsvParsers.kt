@@ -1,4 +1,4 @@
-import com.bytebloom.model.raw.TeamRaw
+import model.TeamRaw
 import java.io.File
 val allFileLines= File("src/main/resources/teams.csv").readLines().drop(1)
 
