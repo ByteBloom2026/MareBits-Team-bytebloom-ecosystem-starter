@@ -1,9 +1,8 @@
 import java.io.File
 
 fun main() {
+  update_function1
     println("ByteBloom Academy: Ecosystem Project Starter")
-    println("✅ Project setup is correct and runnable.")
-//
     val the_new_mentees=parseMenteeRaw()
     if(the_new_mentees!=null){
         println("totel mentees : {${the_new_mentees.size}}")
@@ -18,7 +17,11 @@ fun main() {
     {
         println("no  find data on predormance file")
     }
-
-
-
+    val parsedTeams = parseTeamData()
+    if (parsedTeams!=null) {
+        println("Total teams parsed : ${parsedTeams.size}")
+    }else{
+        println("No team data available for parsing .")
+    }
+  master
 }
