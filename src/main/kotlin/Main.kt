@@ -1,6 +1,7 @@
 
 fun main() {
     println("ByteBloom Academy: Ecosystem Project Starter")
+  feature/add-data-classes
     println("✅ Project setup is correct and runnable.")
     val teams = parseTeamData()
     var total=0
@@ -12,5 +13,5 @@ fun main() {
     }else{
         println("No team data available for parsing .")
     }
-
+ master
 }

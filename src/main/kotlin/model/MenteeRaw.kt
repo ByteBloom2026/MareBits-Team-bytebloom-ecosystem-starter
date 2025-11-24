@@ -1,3 +1,3 @@
-package com.bytebloom.model.raw
+package model
 
 data class MenteeRaw(val menteeId: String, val name: String, val teamId: String)
