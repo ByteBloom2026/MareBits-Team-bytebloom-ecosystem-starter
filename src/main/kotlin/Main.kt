@@ -1,7 +1,6 @@
 import java.io.File
 
 fun main() {
-  update_function1
     println("ByteBloom Academy: Ecosystem Project Starter")
     val the_new_mentees=parseMenteeRaw()
     if(the_new_mentees!=null){
@@ -23,5 +22,4 @@ fun main() {
     }else{
         println("No team data available for parsing .")
     }
-  master
 }
