@@ -1,22 +1,15 @@
-# The ByteBloom Ecosystem - Official Project Starter
+## Welcome to the world of Marebits!✨  
+###### We are a team united by passion and driven by a shared goal: to build a seamless and well-crafted data experience in the ByteBloom Ecosystem project
 
-Welcome to the official starter project for the ByteBloom Academy's Kotlin Software Engineering mentorship program. This repository contains the foundational code and data assets for your team's main project.
+## Team Contributions👥🚀 
+>##### [yara-jamal](): 🧱 Core Data Architecture & Team Parsing 
+* Led the design of the core data structure by creating all required Data Classes.  
+* Developed the team parsing function parseTeamData and ensured its seamless integration within the CsvParsers.kt file.
+* Contributed to unifying and organizing the parser structure with a clear and logical project architecture
 
-## Project Vision
-
-The goal of this project is to build a robust, well-tested, and professionally architected command-line application. This system will process data from multiple sources to model a mentee ecosystem, generating insightful reports based on user commands. This project is the canvas on which you will apply all the concepts learned during the 8-week program, from basic syntax to SOLID principles, TDD, and concurrency.
-
-## Getting Started
-
-1.  **Clone This Starter Project:** Use `git clone` to download this starter project to your local machine.
-2.  **Open in IntelliJ IDEA:** Open the cloned project folder in IntelliJ. It will automatically detect and sync the `build.gradle.kts` file.
-3.  **Run the `main` function:** Navigate to `src/main/kotlin/Main.kt` and run the `main` function to confirm your setup is correct.
-
-## Project Structure
-
--   `src/main/kotlin/Main.kt`: The main entry point for the application.
--   `src/main/resources/`: Contains all raw data files (`mentees.csv`, `teams.csv`, `performance.csv`).
--   `src/test/kotlin/`: This directory is where all your unit tests will live.
--   `build.gradle.kts`: The heart of the project. This file manages dependencies (like JUnit, Koin, etc.) and build settings.
--   `.gitignore`: Specifies which files and directories to ignore in version control.
--   `README.md`: This file! The primary documentation for the project.
+>##### [IbtisamSafi](): ⚙️ Mentee & Performance Parsing
+* Implemented the parsing functions for mentee and performance data (parseMenteeData and parsePerformanceData).  
+* Assisted in data cleaning and proper formatting during the parsing process.  
+* Supported consistent coordination within the CsvParsers.kt file to align with the agreed project structure.
+## Team Spirit & Collaboration🤝 
+>Despite not having the full team available, the spirit of collaboration remained strong. The contributing members supported each other, shared feedback, and worked seamlessly together—ensuring the task was completed efficiently and with care .
