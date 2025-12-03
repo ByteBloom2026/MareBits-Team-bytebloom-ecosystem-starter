@@ -3,30 +3,36 @@ import model.TeamRaw
 import model.PerformanceRaw
 import java.io.File
 
-val lines_of_mentee = File("src/main/resources/mentees.csv").readLines().drop(1)
-val allFileLines= File("src/main/resources/teams.csv").readLines().drop(1)
-val lines_of_performance = File("src/main/resources/performance.csv").readLines().drop(1)
+val linesOfMentee = File("src/main/resources/mentees.csv").readLines().drop(1)
+val allFileLines = File("src/main/resources/teams.csv").readLines().drop(1)
+val linesOfPerformance = File("src/main/resources/performance.csv").readLines().drop(1)
 
 fun parseMenteeRaw(): List<MenteeRaw> {
-       return  lines_of_mentee.map {
-          val parts_mentee = it.split(",")
-           MenteeRaw(parts_mentee[0].trim(), parts_mentee[1].trim(), parts_mentee[2].trim())
-       }
-            }
-fun parseTeamData(): List<TeamRaw>?{
-
-    return allFileLines.map {currentRaw ->
-        val teamFields = currentRaw.split(",").
-                                     map { it.trim() }
-        TeamRaw(teamFields[0],teamFields[1],teamFields[2])
+    return linesOfMentee.map {
+        val partsMentee = it.split(",")
+        MenteeRaw(
+            partsMentee[0].trim(), partsMentee[1].trim(),
+            partsMentee[2].trim()
+        )
     }
-     }
+}
+
+fun parseTeamData(): List<TeamRaw>? {
+
+    return allFileLines.map { currentRaw ->
+        val teamFields = currentRaw.split(",").map { it.trim() }
+        TeamRaw(teamFields[0], teamFields[1], teamFields[2])
+    }
+}
 
 fun parsePerformanceRaw(): List<PerformanceRaw> {
-    return lines_of_performance.map {
-      val parts_performance  = it.split(",")
-        PerformanceRaw(parts_performance[0].trim(), parts_performance[1].trim(), parts_performance[2].trim(),parts_performance[3].trim())
-   } 
+    return linesOfPerformance.map {
+        val partsPerformance = it.split(",")
+        PerformanceRaw(
+            partsPerformance[0].trim(), partsPerformance[1].trim(),
+            partsPerformance[2].trim(), partsPerformance[3].trim()
+        )
+    }
 }
 
 
