@@ -1,6 +1,8 @@
-//val rawTeams = parseTeamData()
-//val rawMentees = parseMenteeRaw()
-//val rawSubmissions = parsePerformanceRaw()
+import parsePerformanceRaw
+
+val teamslist  = parseTeamData()
+val menteeslist = parseMenteeRaw()
+val submissionslist = parsePerformanceRaw()
 
 import model.PerformanceRaw
 import model.TeamRaw
@@ -9,34 +11,57 @@ import domain.Team
 import domain.Mentee
 import domain.PerformanceSubmission
 
-class DomainBuilder {
+class DomainBuilder (  teamslist: List<TeamRaw> ,
+                       menteeslist: List<MenteeRaw>,
+                       submissionslist: List<PerformanceRaw>)  {
 
-    fun buildDomainGraph(
-        rawTeams: List<TeamRaw>, rawMentees: List<MenteeRaw>,
-        rawSubmissions: List<PerformanceRaw>): List<Team> {
-
-        val teamsById = rawTeams.associateBy({ it.teamId})
-        { teamRaw ->
-            Team(teamRaw.teamName)
+    fun attachMenteeTeam (mentteId : String , teamId : String ): List<MenteeRaw> {
+        val currentMentted = menteeslist.associateBy({ it.teamId })
+        menteeslist.forEach {MenteeRaw ->
+            val team =currentMentted[MenteeRaw.teamId]
+        }
+        return menteeslist
+    }
+    fun attachMenteePrefomance (mentteId : String , performance : String ): List<PerformanceRaw> {
+        val currentperformance = submissionslist.associateBy({ it.menteeId})
+        submissionslist.forEach {MenteeRaw ->
+            val team =currentperformance[MenteeRaw.menteeId]
         }
 
-//        val menteesById = mutableMapOf<String, Mentee>()
-//        for (rawMentee in rawMentees) {
-//            val team = teamsById.values.firstOrNull {
-//                it.teamName.contains(rawMentee.teamId, ignoreCase = true)
-//            }
-
-//            val mentee = Mentee(
-//                menteeName = rawMentee.name,
-//                menteeId = rawMentee.menteeId,
-//                team = team)
-//            menteesById[rawMentee.menteeId] = mentee
-//        }
-
-//        for (rawSubmission in rawSubmissions) {
-//            val mentee = menteesById[rawSubmission.menteeId]
-//        }
-
-        return teamsById.values.toList()
+        return submissionslist
     }
-}//
+//    fun attachTeamPrefomance (teamId : String , performance : String ): List<TeamRaw> {
+//        val currentTeam =teamslist.associateBy({it.teamId})
+//        teamslist.forEach {MenteeRaw ->
+//            val team =currentTeam[MenteeRaw.teamId]
+//        }
+//       // return teamslist
+//    }
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
