@@ -4,19 +4,19 @@ fun main() {
     val theNewMentees = parseMenteeRaw()
     if (theNewMentees!= null) {
         println("totel menteess : {${theNewMentees.size}}")
-    } ese{
+    } else{
         println("no  find data on mentees file")
     }
     val theNewPerformances = parsePerformanceRaw()
     if (theNewPerformances!= null) {
         println("totel preformances : {${theNewPerformances.size}}")
-    } ese{
+    } else{
         println("no  find data on predormance file")
     }
     val parsedTeams = parseTeamData()
     if (parsedTeams!= null) {
         println("Total teams parsed : ${parsedTeams.size}")
-    } ese{
+    } else{
         println("No team data available for parsing .")
     }
 }
