@@ -1,5 +1,4 @@
 package domain
-
 data class PerformanceSubmission(
     val id: String,
     val type: String,
