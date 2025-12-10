@@ -15,7 +15,6 @@ fun parseMenteeRaw(): List<MenteeRaw> {
         )
     }
 }
-
 fun parseTeamData(): List<TeamRaw>? {
 
     return allFileLines.map { currentRaw ->
@@ -23,7 +22,6 @@ fun parseTeamData(): List<TeamRaw>? {
         TeamRaw(teamFields[0], teamFields[1], teamFields[2], emptyList())
     }
 }
-
 fun parsePerformanceRaw(): List<PerformanceSubmissionRaw> {
     return linesOfPerformance.map {
         val partsPerformance = it.split(",")
@@ -33,5 +31,3 @@ fun parsePerformanceRaw(): List<PerformanceSubmissionRaw> {
         )
     }
 }
-
-
