@@ -1,7 +1,8 @@
 package domain
 data class Mentee(
+    val id: String,
     val name: String,
-    val id:String,
-    var team: Team?,
-    val submissions: MutableList<PerformanceSubmission> 
+    var teamId: String,
+    val submissions: List<PerformanceSubmission>
 )
+
