@@ -1,5 +1,4 @@
 package model
-
 data class PerformanceSubmissionRaw(
     val id: String,
     val submissionType: String,

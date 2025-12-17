@@ -2,7 +2,6 @@ import model.MenteeRaw
 import model.TeamRaw
 import model.PerformanceSubmissionRaw
 import java.io.File
-
 val linesOfMentee = File("src/main/resources/mentees.csv").readLines().drop(1)
 val allFileLines = File("src/main/resources/teams.csv").readLines().drop(1)
 val linesOfPerformance = File("src/main/resources/performance.csv").readLines().drop(1)
