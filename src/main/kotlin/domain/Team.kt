@@ -2,5 +2,5 @@ package domain
 data class Team(
     val id :String,
     val name: String,
-    val mentees: List<Mentee>
+    val mentees: MutableList<Mentee>
 )
