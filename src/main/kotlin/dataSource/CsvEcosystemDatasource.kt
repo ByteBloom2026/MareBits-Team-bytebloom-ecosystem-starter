@@ -23,7 +23,7 @@ open class CsvEcosystemDatasource : EcoSystemDataSource {
         return parseTeamRow()
     }
     override fun getpreformance(): List<preformanceRow> {
-        return parsePerformanceRow()
+        return parsePreformanceRow()
     }
     override fun getproject(): List<projectRow> {
         return parseProjectRow()
@@ -31,8 +31,6 @@ open class CsvEcosystemDatasource : EcoSystemDataSource {
     override fun getattendance(): List<attendanceRow> {
         return parseAttendanceRow()
     }
-
-
 
     private fun parseMenteeRow (): List<menteeRow> {
         return  linesOfMentee.map {
@@ -44,7 +42,7 @@ open class CsvEcosystemDatasource : EcoSystemDataSource {
         }
     }
     private fun parseTeamRow ():List<teamRow>{
-        return lines0fTeam.map {
+        return linesOfTeam.map {
             val partsTeam=it.split(",")
             teamRow(
                 partsTeam[0].trim(),partsTeam[1].trim(),
@@ -52,7 +50,7 @@ open class CsvEcosystemDatasource : EcoSystemDataSource {
             )
         }
     }
-  private fun parsePreformance () :List<preformanceRow>{
+  private fun parsePreformanceRow () :List<preformanceRow>{
      return dataSource.linesOfPerformance.map {
          val partsPreformance = it.split(",")
          preformanceRow(
@@ -62,7 +60,7 @@ open class CsvEcosystemDatasource : EcoSystemDataSource {
      }
     }
     private fun parseProject() :List<projectRow>{
-        return linesOfproject.map {
+        return linesOfProject.map {
             val partsproject = it.split(",")
             projectRow(
                 partsproject[0].trim(), partsproject[1].trim(),
@@ -94,7 +92,7 @@ open class CsvEcosystemDatasource : EcoSystemDataSource {
     }
     fun getPerformanceByTeam(teamId : String ) : List<preformanceRow>{
         val allMentees = parseMenteeRow()
-        val allPerformance = parsePerformanceRow()
+        val allPerformance = parsePreformanceRow()
         val menteeToTeam = allMentees.associate { it.menteeId to it.teamId }
         return allPerformance.filter { menteeToTeam[it.menteeId] == teamId }
     }
