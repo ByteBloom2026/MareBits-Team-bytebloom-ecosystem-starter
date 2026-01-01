@@ -5,6 +5,7 @@ import dataSource.model.teamRow
 import dataSource.model.preformanceRow
 import dataSource.model.projectRow
 import dataSource.model.attendanceRow
+import domain.model.Mentee
 
 interface EcoSystemDataSource {
 

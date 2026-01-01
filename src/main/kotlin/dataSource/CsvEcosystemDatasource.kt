@@ -13,7 +13,7 @@ val linesOfPerformance = File("src/main/resources/performance.csv").readLines().
 val linesOfProject = File("src/main/resources/project.csv").readLines().drop(1)
 val linesOfAttendance = File("src/main/resources/attendance.csv").readLines().drop(1)
 
-class CsvEcosystemDatasource : EcoSystemDataSource {
+open class CsvEcosystemDatasource : EcoSystemDataSource {
 
     override fun getMentees(): List<menteeRow>? {
         return parseMenteeRow()
@@ -31,25 +31,43 @@ class CsvEcosystemDatasource : EcoSystemDataSource {
     override fun getattendance(): List<attendanceRow> {
         return parseAttendanceRow()
     }
-    // fun parse
-    private fun parseMenteeRow(): List<menteeRow> {
-        return linesOfMentee.map {
-            val parts = it.split(",")
-            menteeRow(parts[0].trim(), parts[1].trim(), parts[2].trim())
+
+
+
+    private fun parseMenteeRow (): List<menteeRow> {
+        return  linesOfMentee.map {
+            val partsMentee = it.split(",")
+            menteeRow(
+                partsMentee[0].trim(), partsMentee[1].trim(),
+                partsMentee[2].trim()
+            )
         }
     }
-    private fun parseTeamRow(): List<teamRow> {
-        return linesOfTeam.map {
-            val parts = it.split(",")
-            teamRow(parts[0].trim(), parts[1].trim(),
-                parts[2].trim())
+    private fun parseTeamRow ():List<teamRow>{
+        return lines0fTeam.map {
+            val partsTeam=it.split(",")
+            teamRow(
+                partsTeam[0].trim(),partsTeam[1].trim(),
+                partsTeam[2].trim()
+            )
         }
     }
-    private fun parsePerformanceRow(): List<preformanceRow> {
-        return linesOfPerformance.map {
-            val parts = it.split(",")
-            preformanceRow(parts[0].trim(), parts[1].trim(),
-                parts[2].trim(), parts[3].trim())
+  private fun parsePreformance () :List<preformanceRow>{
+     return dataSource.linesOfPerformance.map {
+         val partsPreformance = it.split(",")
+         preformanceRow(
+             partsPreformance[0].trim(),partsPreformance[1].trim(),
+             partsPreformance[2].trim(),partsPreformance[3].trim()
+         )
+     }
+    }
+    private fun parseProject() :List<projectRow>{
+        return linesOfproject.map {
+            val partsproject = it.split(",")
+            projectRow(
+                partsproject[0].trim(), partsproject[1].trim(),
+                partsproject[2].trim()
+            )
         }
     }
     private fun parseProjectRow(): List<projectRow> {

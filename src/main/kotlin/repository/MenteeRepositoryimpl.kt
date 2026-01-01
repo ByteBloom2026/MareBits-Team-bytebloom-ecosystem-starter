@@ -1,8 +1,0 @@
-package repository
-
-class MenteeRepositoryimpl {
-
-
-
-
-}
