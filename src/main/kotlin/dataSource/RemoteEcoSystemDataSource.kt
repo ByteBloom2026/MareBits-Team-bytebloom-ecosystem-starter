@@ -1,4 +1,0 @@
-package dataSource
-
-class RemoteEcoSystemDataSource {
-}

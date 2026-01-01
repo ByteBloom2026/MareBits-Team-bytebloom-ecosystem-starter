@@ -8,9 +8,9 @@ import dataSource.model.attendanceRow
 
 interface EcoSystemDataSource {
 
-    fun getAllMentees (): List<menteeRow>
-    fun getTopTeam () : List<teamRow>
+    fun getMentees (): List<menteeRow>?
+    fun getTeam () : List<teamRow>
     fun getpreformance () : List<preformanceRow>
-    fun getAllproject () :List<projectRow>
+    fun getproject () :List<projectRow>
     fun getattendance () : List<attendanceRow>
 }
