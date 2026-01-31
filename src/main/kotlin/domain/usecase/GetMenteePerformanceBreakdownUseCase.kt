@@ -7,11 +7,12 @@ import data.repository.PerformanceRepository
 class  GetMenteePerformanceBreakdownUseCase(
     private val performanceRepository: PerformanceRepository
 ) {
-    operator fun invoke(menteeId: String): Map<SubmissionType, Double> {
+    operator fun invoke(menteeId: String): Map<String, Double> {
         val submissions = performanceRepository.getPerformanceByMenteeId(menteeId)
         return submissions.groupBy { it.type }
             .mapValues { (_, list) ->
-                list.map { it.score }.average().let { if (it.isNaN()) 0.0 else it }
+                val avg = list.map { it.score }.average()
+                if (avg.isNaN()) 0.0 else avg
             }
     }
 }

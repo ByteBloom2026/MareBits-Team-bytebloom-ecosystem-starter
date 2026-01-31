@@ -6,7 +6,7 @@ import data.repository.PerformanceRepository
 class GetAverageScorePerSubmissionTypeUseCase(
     private val performanceRepository: PerformanceRepository
 ) {
-    operator fun invoke(): Map<SubmissionType, Double> {
+    operator fun invoke(): Map<String, Double> {
         val allPerformances = performanceRepository.getAllPerformance()
 
         return allPerformances
