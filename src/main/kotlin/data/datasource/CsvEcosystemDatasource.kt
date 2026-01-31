@@ -32,7 +32,7 @@ class CsvEcosystemDataSource(
     override fun getPerformances(): List<PerformanceRow> = performanceLines.map {
         val parts = it.split(",")
         PerformanceRow(
-            parts[0].trim(), parts[1].trim(), parts[2].trim(), parts[3].trim()
+            parts[0].trim(), parts[1].trim(), parts[2].trim().toDoubleOrNull() ?: 0.0, parts[3].trim()
         )
     }
 
