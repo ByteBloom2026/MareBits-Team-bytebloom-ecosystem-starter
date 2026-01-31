@@ -1,16 +1,16 @@
 package domain.usecase
 
 import Repository.PerformanceRepository
-import domain.averageOrZero
 
-class getMenteePerformanceBreakdown(
+
+class  getMenteePerformanceBreakdown(
     private val performanceRepository: PerformanceRepository
 ) {
     operator fun invoke(menteeId: String): Map<String, Double> {
         val submissions = performanceRepository.getPerformanceByMenteeId(menteeId)
         return submissions.groupBy { it.submissionType }
             .mapValues { (_, list) ->
-                list.map { it.score.toDoubleOrNull() ?: 0.0 }.averageOrZero()
+                list.map { it.score }.average().let { if (it.isNaN()) 0.0 else it }
             }
     }
 }

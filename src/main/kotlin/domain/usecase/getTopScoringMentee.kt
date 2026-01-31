@@ -2,7 +2,6 @@ package domain.usecase
 
 import Repository.MenteeRepository
 import Repository.PerformanceRepository
-import domain.averageOrZero
 import domain.model.Mentee
 
 class getTopScoringMentee(
@@ -12,7 +11,7 @@ class getTopScoringMentee(
     operator fun invoke(): Mentee? =
         menteeRepository.getAllMentees().maxByOrNull { m ->
             val scores = performanceRepository.getPerformanceByMenteeId(m.id)
-                .map { it.score.toDoubleOrNull() ?: 0.0 }
-            scores.averageOrZero()
+                .map { it.score}
+            scores.average().let { if (it.isNaN()) 0.0 else it }
         }
 }

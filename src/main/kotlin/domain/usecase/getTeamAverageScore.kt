@@ -2,7 +2,7 @@ package domain.usecase
 
 import Repository.MenteeRepository
 import Repository.PerformanceRepository
-import domain.averageOrZero
+
 
 class getTeamAverageScore(
     private val menteeRepository: MenteeRepository,
@@ -12,8 +12,8 @@ class getTeamAverageScore(
         val mentees = menteeRepository.getMenteesByTeamId(teamId)
         val allScores = mentees.flatMap { m ->
             performanceRepository.getPerformanceByMenteeId(m.id)
-                .map { it.score.toDoubleOrNull() ?: 0.0 }
+                .map { it.score}
         }
-        return allScores.averageOrZero()
+        return allScores.average().let { if (it.isNaN()) 0.0 else it }
     }
 }

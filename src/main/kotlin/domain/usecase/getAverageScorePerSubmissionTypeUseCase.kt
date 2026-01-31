@@ -1,8 +1,6 @@
 package domain.usecase
 
 import Repository.PerformanceRepository
-import domain.averageOrZero
-
 
 class getAverageScorePerSubmissionTypeUseCase(
     private val performanceRepository: PerformanceRepository
@@ -13,7 +11,7 @@ class getAverageScorePerSubmissionTypeUseCase(
         return allPerformances
             .groupBy { it.submissionType }
             .mapValues { (_, submissions) ->
-                submissions.map { it.score.toDoubleOrNull() ?: 0.0 }.averageOrZero()
+                submissions.map { it.score }.average().let { if (it.isNaN()) 0.0 else it }
             }
     }
 }

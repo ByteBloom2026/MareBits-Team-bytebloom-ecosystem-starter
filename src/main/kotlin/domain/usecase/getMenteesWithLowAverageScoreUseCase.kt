@@ -2,7 +2,6 @@ package domain.usecase
 
 import Repository.MenteeRepository
 import Repository.PerformanceRepository
-import domain.averageOrZero
 import domain.model.Mentee
 
 class getMenteesWithLowAverageScoreUseCase(
@@ -13,8 +12,8 @@ class getMenteesWithLowAverageScoreUseCase(
         return menteeRepository.getAllMentees()
             .filter { mentee ->
                 val avgScore = performanceRepository.getPerformanceByMenteeId(mentee.id)
-                    .map { it.score.toDoubleOrNull() ?: 0.0 }
-                    .averageOrZero()
+                    .map { it.score}
+                    .average().let { if (it.isNaN()) 0.0 else it }
 
 
                 avgScore < threshold
