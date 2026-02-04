@@ -1,11 +1,10 @@
-import Repository.MenteeRepository
 import java.io.File
-import data.dataSource.CsvEcosystemDataSource
+import data.datasource.CsvEcosystemDataSource
 import domain.usecase.*
-import repository.*
+import data.repository.*
 
 fun main() {
-    val csvDataSource = CsvEcosystemDataSource(
+    val csvDataSource = CsvEcosystemDataSource.getInstance(
         File("src/main/resources/mentees.csv"),
         File("src/main/resources/teams.csv"),
         File("src/main/resources/performance.csv"),
@@ -13,69 +12,57 @@ fun main() {
         File("src/main/resources/attendance.csv")
     )
     val menteeRepository = MenteeRepositoryImpl(csvDataSource)
-    val teamRepositpry = TeamRepositoryImpl(csvDataSource)
+    val teamRepositry = TeamRepositoryImpl(csvDataSource)
     val performanceRepository = PerformanceRepositoryImpl(csvDataSource)
     val projectRepository = ProjectRepositoryImpl(csvDataSource)
     val attendanceRepository = AttendanceRepositoryImpl(csvDataSource)
 
-    // execute the function  GetMenteeNameById
-    val GetMenteeNameById = getMenteeNameById(menteeRepository)
-    println("please entre the id mentee : " + GetMenteeNameById)
+     val groupTeamsByMentorUseCase=GroupTeamsByMentorUseCase(teamRepositry)
+     println(" Teams Grouped By Mentor : ${groupTeamsByMentorUseCase}")
 
-    // execute the function  getMenteeNamesByTeamName
-    val GetMenteeNamesByTeamName = getMenteeNamesByTeamName(teamRepositpry, menteeRepository)
-    println("please entre the team name : " + GetMenteeNamesByTeamName)
+    val getMenteeNameById = GetMenteeNameByIdUseCase(menteeRepository)
+    println("Mentee name (M1): ${getMenteeNameById("M1")}")
 
-    // execute the function getNumberOfProjectsByMenteeId
-    val GetNumberOfProjectsByMenteeId = getNumberOfProjectsByMenteeId(menteeRepository, projectRepository)
-    println("please entre the id mentee" + GetNumberOfProjectsByMenteeId)
+    val getMenteeNamesByTeamName = GetMenteeNamesByTeamNameUseCase(teamRepositry, menteeRepository)
+    println("Mentees in team Alpha: ${getMenteeNamesByTeamName("Alpha")}")
 
-    //execute the function getTeamByMenteeName
-    val GetTeamByMenteeName=getTeamByMenteeName(teamRepositpry,menteeRepository)
-    println("please the entre the mentee name : "+GetTeamByMenteeName)
+    val getNumberOfProjectsByMenteeId = GetNumberOfProjectsByMenteeIdUseCase(menteeRepository, projectRepository)
+    println("Projects count for mentee M1: ${getNumberOfProjectsByMenteeId("M1")}")
 
-    //execute the function IsMenteeInTeam
-    val IsMenteeInTeam = IsMenteeInTeam(teamRepositpry,menteeRepository)
-    println("please enter the id mentee and team name"+IsMenteeInTeam)
+    val getTeamByMenteeName = GetTeamByMenteeNameUseCase(teamRepositry, menteeRepository)
+    println("Team of mentee Alice: ${getTeamByMenteeName("Alice")}")
 
-    //execute the function GenerateTeamAttendanceReport
-    val generateTeamAttendanceReport =GenerateTeamAttendanceReport(attendanceRepository,menteeRepository)
-    println("please entre the teamid : "+generateTeamAttendanceReport)
+    val isMenteeInTeam = IsMenteeInTeamUseCase(teamRepositry, menteeRepository)
+    println("Is mentee M1 in team Alpha? ${isMenteeInTeam("M1", "Alpha")}")
 
-   // execute the function  GetAverageAttendancePercentagePerTeam
-   val getAverageAttendancePercentagePerTeam=GetAverageAttendancePercentagePerTeam(teamRepositpry,menteeRepository,attendanceRepository)
-    println("the average attendanc : "+getAverageAttendancePercentagePerTeam)
+    val generateTeamAttendanceReport = GenerateTeamAttendanceReportUseCase(attendanceRepository, menteeRepository)
+    println("Attendance report for team T1: ${generateTeamAttendanceReport("T1")}")
 
-    //execute the function GetMostAbsentMentees
-    val getMostAbsentMentees=GetMostAbsentMentees(menteeRepository,attendanceRepository)
-    println(getMostAbsentMentees)
+    val getAverageAttendancePercentagePerTeam =
+        GetAverageAttendancePercentagePerTeamUseCase(teamRepositry, menteeRepository, attendanceRepository)
+    println("Average attendance per team: ${getAverageAttendancePercentagePerTeam()}")
 
-    //execute the function GetPerfectAttendanceMentees
-    val getPerfectAttendanceMentees=GetPerfectAttendanceMentees(attendanceRepository,menteeRepository)
-    println("The perfect mentees : "+getPerfectAttendanceMentees)
+    val getMostAbsentMentees = GetMostAbsentMenteesUseCase(menteeRepository, attendanceRepository)
+    println("Most absent mentees: ${getMostAbsentMentees()}")
 
-    //execute the function GetPoorAttendanceMentees
-    val getPoorAttendanceMentees=GetPoorAttendanceMentees(attendanceRepository,menteeRepository)
-    println("The poor mentees : "+getPoorAttendanceMentees)
+    val getPerfectAttendanceMentees = GetPerfectAttendanceMenteesUseCase(attendanceRepository, menteeRepository)
+    println("Perfect attendance mentees: ${getPerfectAttendanceMentees()}")
 
-   //execute the function  getAverageScorePerSubmissionTypeUseCasel
-    val GetAverageScorePerSubmissionTypeUseCasel=getAverageScorePerSubmissionTypeUseCase(performanceRepository)
-    println(GetAverageScorePerSubmissionTypeUseCasel)
+    val getPoorAttendanceMentees = GetPoorAttendanceMenteesUseCase(attendanceRepository, menteeRepository)
+    println("Poor attendance mentees (>=3 absences): ${getPoorAttendanceMentees(3)}")
 
-    //execute the function getMenteePerformanceBreakdown
-    val GetMenteePerformanceBreakdown=getMenteePerformanceBreakdown(performanceRepository)
-    println("plesae entre the ib mentee : "+GetMenteePerformanceBreakdown)
+    val getAverageScorePerSubmissionType = GetAverageScorePerSubmissionTypeUseCase(performanceRepository)
+    println("Average score per submission type: ${getAverageScorePerSubmissionType()}")
 
+    val getMenteePerformanceBreakdown = GetMenteePerformanceBreakdownUseCase(performanceRepository)
+    println("Performance breakdown for mentee M1: ${getMenteePerformanceBreakdown("M1")}")
 
-    //execute the function getMenteesWithLowAverageScoreUseCase
-   val GetMenteesWithLowAverageScoreUseCase=getMenteesWithLowAverageScoreUseCase(menteeRepository,performanceRepository)
-   println(GetMenteesWithLowAverageScoreUseCase)
+    val getMenteesWithLowAverageScore = GetMenteesWithLowAverageScoreUseCase(menteeRepository, performanceRepository)
+    println("Low average score mentees (<60): ${getMenteesWithLowAverageScore(60.0)}")
 
-    //execute the function getTeamAverageScore
-    val GetTeamAverageScore=getTeamAverageScore(menteeRepository,performanceRepository)
-    println("please entre the id team : "+GetTeamAverageScore)
+    val getTeamAverageScore = GetTeamAverageScoreUseCase(menteeRepository, performanceRepository)
+    println("Team T1 average score: ${getTeamAverageScore("T1")}")
 
-    //execute the function getTopScoringMentee
-    val GetTopScoringMentee=getTopScoringMentee(menteeRepository,performanceRepository)
-    println("The top scor"+GetTopScoringMentee)
+    val getTopScoringMentee = GetTopScoringMenteeUseCase(menteeRepository, performanceRepository)
+    println("Top scoring mentee: ${getTopScoringMentee()}")
 }

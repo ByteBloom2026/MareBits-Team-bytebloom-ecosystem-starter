@@ -1,7 +1,7 @@
 package domain.model
 data class Team(
-    val teamId: String,
-    val teamName: String,
+    val id: String,
+    val name: String,
     val mentorLead: String,
-    val project: Project?=null
+    val projects: Project? = null
 )
