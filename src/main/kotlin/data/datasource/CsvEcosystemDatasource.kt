@@ -1,7 +1,9 @@
 package data.datasource
+
 import data.datasource.model.*
 import data.EcoSystemDataSource
 import java.io.File
+
 class CsvEcosystemDataSource private constructor(
     menteeFile: File, teamFile: File, performanceFile: File, projectFile: File, attendanceFile: File
 ) : EcoSystemDataSource {
@@ -16,42 +18,62 @@ class CsvEcosystemDataSource private constructor(
         MenteeRow(parts[0].trim(), parts[1].trim(), parts[2].trim())
     }
 
-    override fun getMenteeById(id: String): MenteeRow? = getMentees().find { it.id == id }
+    override fun getMenteeById(id: String):
+            MenteeRow? = getMentees().find { it.id == id }
 
-    override fun getMenteesByTeamId(teamId: String): List<MenteeRow> = getMentees().filter { it.teamId == teamId }
+    override fun getMenteesByTeamId(teamId: String):
+            List<MenteeRow> = getMentees().filter { it.teamId == teamId }
 
-    override fun getTeams(): List<TeamRow> = teamLines.map {
+    override fun getTeams():
+            List<TeamRow> = teamLines.map {
         val parts = it.split(",")
-        TeamRow(parts[0].trim(), parts[1].trim(), parts[2].trim())
+        TeamRow(
+            parts[0].trim(), parts[1].trim(),
+            parts[2].trim()
+        )
     }
 
-    override fun getTeamById(teamId: String): TeamRow? = getTeams().find { it.id == teamId }
+    override fun getTeamById(teamId: String):
+            TeamRow? = getTeams().find { it.id == teamId }
 
-    override fun getPerformances(): List<PerformanceRow> = performanceLines.map {
+    override fun getPerformances():
+            List<PerformanceRow> = performanceLines.map {
         val parts = it.split(",")
         PerformanceRow(
-            parts[0].trim(), parts[1].trim(), parts[2].trim().toDoubleOrNull() ?: 0.0, parts[3].trim()
+            parts[0].trim(), parts[1].trim(),
+            parts[2].trim().toDoubleOrNull() ?: 0.0,
+            parts[3].trim()
         )
     }
 
     override fun getPerformanceByMenteeId(menteeId: String): List<PerformanceRow> =
         getPerformances().filter { it.menteeId == menteeId }
 
-    override fun getProjects(): List<ProjectRow> = projectLines.map {
+    override fun getProjects():
+            List<ProjectRow> = projectLines.map {
         val parts = it.split(",")
-        ProjectRow(parts[0].trim(), parts[1].trim(), parts[2].trim())
+        ProjectRow(
+            parts[0].trim(), parts[1].trim(),
+            parts[2].trim()
+        )
     }
 
-    override fun getProjectByTeamId(teamId: String): ProjectRow? = getProjects().find { it.teamId == teamId }
-    override fun getAttendances(): List<AttendanceRow> = attendanceLines.map {
+    override fun getProjectByTeamId(teamId: String):
+            ProjectRow? = getProjects().find { it.teamId == teamId }
+
+    override fun getAttendances():
+            List<AttendanceRow> = attendanceLines.map {
         val parts = it.split(",")
         AttendanceRow(
             menteeId = parts[0].trim(),
             weeks = parts.drop(1).joinToString(",")
         )
     }
-    override fun getAttendanceByMenteeId(menteeId: String): AttendanceRow? =
+
+    override fun getAttendanceByMenteeId(menteeId: String):
+            AttendanceRow? =
         getAttendances().find { it.menteeId == menteeId }
+
     companion object {
         @Volatile
         private var instance: CsvEcosystemDataSource? = null
@@ -62,7 +84,8 @@ class CsvEcosystemDataSource private constructor(
             performanceFile: File,
             projectFile: File,
             attendanceFile: File
-        ): CsvEcosystemDataSource {
+        ):
+                CsvEcosystemDataSource {
             return instance ?: synchronized(this) {
                 instance ?: CsvEcosystemDataSource(
                     menteeFile,

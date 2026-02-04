@@ -2,6 +2,7 @@ import java.io.File
 import data.datasource.CsvEcosystemDataSource
 import domain.usecase.*
 import data.repository.*
+
 fun main() {
     val csvDataSource = CsvEcosystemDataSource.getInstance(
         File("src/main/resources/mentees.csv"),
@@ -15,6 +16,9 @@ fun main() {
     val performanceRepository = PerformanceRepositoryImpl(csvDataSource)
     val projectRepository = ProjectRepositoryImpl(csvDataSource)
     val attendanceRepository = AttendanceRepositoryImpl(csvDataSource)
+
+     val groupTeamsByMentorUseCase=GroupTeamsByMentorUseCase(teamRepositry)
+     println(" Teams Grouped By Mentor : ${groupTeamsByMentorUseCase}")
 
     val getMenteeNameById = GetMenteeNameByIdUseCase(menteeRepository)
     println("Mentee name (M1): ${getMenteeNameById("M1")}")
@@ -53,8 +57,7 @@ fun main() {
     val getMenteePerformanceBreakdown = GetMenteePerformanceBreakdownUseCase(performanceRepository)
     println("Performance breakdown for mentee M1: ${getMenteePerformanceBreakdown("M1")}")
 
-    val getMenteesWithLowAverageScore =
-        GetMenteesWithLowAverageScoreUseCase(menteeRepository, performanceRepository)
+    val getMenteesWithLowAverageScore = GetMenteesWithLowAverageScoreUseCase(menteeRepository, performanceRepository)
     println("Low average score mentees (<60): ${getMenteesWithLowAverageScore(60.0)}")
 
     val getTeamAverageScore = GetTeamAverageScoreUseCase(menteeRepository, performanceRepository)
