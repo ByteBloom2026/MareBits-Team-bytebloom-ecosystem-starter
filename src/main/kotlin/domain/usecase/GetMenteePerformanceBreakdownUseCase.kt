@@ -4,7 +4,7 @@ import data.repository.PerformanceRepository
 class  GetMenteePerformanceBreakdownUseCase(
     private val performanceRepository: PerformanceRepository
 ) {
-    operator fun invoke(menteeId: String): Map<String, Double> {
+    operator fun invoke(menteeId: String): Map<SubmissionType, Double> {
         val submissions = performanceRepository.getPerformanceByMenteeId(menteeId)
         return submissions.groupBy { it.type }
             .mapValues { (_, list) ->

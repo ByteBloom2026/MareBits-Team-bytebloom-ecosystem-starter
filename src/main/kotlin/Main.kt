@@ -15,36 +15,51 @@ fun main() {
     val performanceRepository = PerformanceRepositoryImpl(csvDataSource)
     val projectRepository = ProjectRepositoryImpl(csvDataSource)
     val attendanceRepository = AttendanceRepositoryImpl(csvDataSource)
+
     val getMenteeNameById = GetMenteeNameByIdUseCase(menteeRepository)
+    println("Mentee name (M1): ${getMenteeNameById("M1")}")
+
     val getMenteeNamesByTeamName = GetMenteeNamesByTeamNameUseCase(teamRepositry, menteeRepository)
+    println("Mentees in team Alpha: ${getMenteeNamesByTeamName("Alpha")}")
+
     val getNumberOfProjectsByMenteeId = GetNumberOfProjectsByMenteeIdUseCase(menteeRepository, projectRepository)
+    println("Projects count for mentee M1: ${getNumberOfProjectsByMenteeId("M1")}")
+
     val getTeamByMenteeName = GetTeamByMenteeNameUseCase(teamRepositry, menteeRepository)
+    println("Team of mentee Alice: ${getTeamByMenteeName("Alice")}")
+
     val isMenteeInTeam = IsMenteeInTeamUseCase(teamRepositry, menteeRepository)
+    println("Is mentee M1 in team Alpha? ${isMenteeInTeam("M1", "Alpha")}")
+
     val generateTeamAttendanceReport = GenerateTeamAttendanceReportUseCase(attendanceRepository, menteeRepository)
+    println("Attendance report for team T1: ${generateTeamAttendanceReport("T1")}")
+
     val getAverageAttendancePercentagePerTeam =
         GetAverageAttendancePercentagePerTeamUseCase(teamRepositry, menteeRepository, attendanceRepository)
+    println("Average attendance per team: ${getAverageAttendancePercentagePerTeam()}")
+
     val getMostAbsentMentees = GetMostAbsentMenteesUseCase(menteeRepository, attendanceRepository)
+    println("Most absent mentees: ${getMostAbsentMentees()}")
+
     val getPerfectAttendanceMentees = GetPerfectAttendanceMenteesUseCase(attendanceRepository, menteeRepository)
+    println("Perfect attendance mentees: ${getPerfectAttendanceMentees()}")
+
     val getPoorAttendanceMentees = GetPoorAttendanceMenteesUseCase(attendanceRepository, menteeRepository)
+    println("Poor attendance mentees (>=3 absences): ${getPoorAttendanceMentees(3)}")
+
     val getAverageScorePerSubmissionType = GetAverageScorePerSubmissionTypeUseCase(performanceRepository)
+    println("Average score per submission type: ${getAverageScorePerSubmissionType()}")
+
     val getMenteePerformanceBreakdown = GetMenteePerformanceBreakdownUseCase(performanceRepository)
+    println("Performance breakdown for mentee M1: ${getMenteePerformanceBreakdown("M1")}")
+
     val getMenteesWithLowAverageScore =
         GetMenteesWithLowAverageScoreUseCase(menteeRepository, performanceRepository)
-    val getTeamAverageScore = GetTeamAverageScoreUseCase(menteeRepository, performanceRepository)
-    val getTopScoringMentee = GetTopScoringMenteeUseCase(menteeRepository, performanceRepository)
-    println("Mentee name (M1): ${getMenteeNameById("M1")}")
-    println("Mentees in team Alpha: ${getMenteeNamesByTeamName("Alpha")}")
-    println("Projects count for mentee M1: ${getNumberOfProjectsByMenteeId("M1")}")
-    println("Team of mentee Alice: ${getTeamByMenteeName("Alice")}")
-    println("Is mentee M1 in team Alpha? ${isMenteeInTeam("M1", "Alpha")}")
-    println("Attendance report for team T1: ${generateTeamAttendanceReport("T1")}")
-    println("Average attendance per team: ${getAverageAttendancePercentagePerTeam()}")
-    println("Most absent mentees: ${getMostAbsentMentees()}")
-    println("Perfect attendance mentees: ${getPerfectAttendanceMentees()}")
-    println("Poor attendance mentees (>=3 absences): ${getPoorAttendanceMentees(3)}")
-    println("Average score per submission type: ${getAverageScorePerSubmissionType()}")
-    println("Performance breakdown for mentee M1: ${getMenteePerformanceBreakdown("M1")}")
     println("Low average score mentees (<60): ${getMenteesWithLowAverageScore(60.0)}")
+
+    val getTeamAverageScore = GetTeamAverageScoreUseCase(menteeRepository, performanceRepository)
     println("Team T1 average score: ${getTeamAverageScore("T1")}")
+
+    val getTopScoringMentee = GetTopScoringMenteeUseCase(menteeRepository, performanceRepository)
     println("Top scoring mentee: ${getTopScoringMentee()}")
 }
