@@ -13,7 +13,7 @@ class GetMostAbsentMenteesUseCase (
                 attendanceRepository.getAttendanceByMenteeId(mentee.id)
                     ?.weeks
                     ?.let { weeks ->
-                        val absentCount = weeks.count { it == AttendanceState.PRESENT}
+                        val absentCount = weeks.count { it != AttendanceState.PRESENT}
                         mentee to absentCount
                     }
             }
