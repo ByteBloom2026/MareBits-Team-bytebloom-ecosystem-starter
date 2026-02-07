@@ -101,7 +101,24 @@ Nice work on the foundation! To level up the project, we've gathered some insigh
 
 [// Elham Hasan notes]()
 
+"Hello Mare Bits Team! I took a tour through the code, and the effort put into building a solid foundation is evident. The structure is clean and reflects organized engineering thought. Here are some architectural highlights I truly appreciated:
+High Organization: The clear separation between domain, data, and model packages makes the code easy to navigate.
 
+Scalability: Decoupling EcosystemDataSource from the CSV implementation via interfaces provides great flexibility for future data source changes.
+
+Documentation: The README.md is visually excellent and clearly defines team roles and contributions." Technical Observations & Recommendations
+
+Data Safety (Null-Safety in Parsing)
+"In the Parsers logic, I noticed that data conversion (like toDouble()) is performed directly. To prevent the app from crashing due to empty cells or malformed data in the CSV, I suggest using .toDoubleOrNull() ?: 0.0. This will make the system much more robust against unexpected data issues."
+
+Performance Optimization (Using Sequences)
+"Since we are processing collections (Lists) with multiple filter and map operations, I recommend using .asSequence() before these transformations. This implements 'Lazy Evaluation', which reduces memory overhead and improves performance as the CSV data grows."
+
+Logic Consistency (Distinguishing Empty States)
+"In some functions calculating scores or attendance, returning 0 when a user isn't found can be ambiguous. I suggest returning null or using an Optional pattern to clearly distinguish between 'a user with a zero score' and 'a user who does not exist in the records'."
+
+Dependency Management (Future-Proofing)
+"While the current getInstance pattern works, as the project expands, we might consider moving toward a Dependency Injection (DI) framework like Koin. This would decouple our components further and make Unit Testing significantly easier to implement." Conclusion "These observations are meant to provide positive challenges to help us reach the best possible architecture together. Great job so far, and I'm excited to see how we evolve this project! 🚀"
 
 
 
