@@ -10,7 +10,7 @@ class SubmissionIdValidator : Validator<String> {
         return ValidationResult.failure("submissionId", "submission id is required.")
     }
     if (!idRegex.matches(value)) {
-        return ValidationResult.failure("SubmissionId","It must begin with "sub" followed by 3 numbers.")
+        return ValidationResult.failure("SubmissionId","It must begin with 'sub' followed by 3 numbers.")
     }
     return ValidationResult.success(value.lowercase())
 }
