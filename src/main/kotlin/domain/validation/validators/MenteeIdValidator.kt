@@ -1,6 +1,7 @@
 package domain.validation.validators
 import domain.validation.ValidationResult
 import domain.validation.Validator
+
 class MenteeIdValidator : Validator<String> {
     private val idRegex = Regex("^m\\d{3}$", RegexOption.IGNORE_CASE)
     override fun validate(data: String): ValidationResult<String> {
