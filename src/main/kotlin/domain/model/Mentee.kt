@@ -5,22 +5,25 @@ data class Mentee  private constructor(
     val id: String,
     val name: String,
     val teamId: String
-){
-    constructor(id: String,name: String,teamId: String) : this(
-        id= java.util.UUID.randomUUID().toString(),
-        name=name,
-        teamId=teamId
+) {
+    constructor(name: String, teamId: String) : this(
+        id = java.util.UUID.randomUUID().toString(),
+        name = name,
+        teamId = teamId
     )
 
-    companion object{
+    companion object {
+       val menteeNameValidator = MenteeNameValidator()
         val menteeIdValidator=MenteeIdValidator()
-        val menteeNameValidator=MenteeNameValidator()
+
+        fun create(name: String, teamId: String): Mentee {
+            menteeNameValidator.validate(name)
+            menteeIdValidator.validate(name)
+            return Mentee(name, teamId)
+        }
     }
-    fun create(id: String,name: String,teamId: String):Mentee{
-        menteeIdValidator.validate(id)
-        menteeNameValidator.validate(name)
-        return Mentee (id ,
-            name,
-            teamId)
-    }
+
+
 }
+
+

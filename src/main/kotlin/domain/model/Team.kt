@@ -9,10 +9,10 @@ data class Team  private constructor(
     val projects: Project? = null
 ){
     constructor(id: String,name: String,mentorLead: String,project: Project) : this(
-        id= UUID.randomUUID().toString(),
+        id= id,
         name=name,
         mentorLead=mentorLead,
-        project=project
+        projects=project
     )
 
     companion object {
