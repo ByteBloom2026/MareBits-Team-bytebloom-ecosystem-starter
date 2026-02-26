@@ -8,4 +8,4 @@ class LineIsNotEmptyValidator: Validator<String>  {
             Result.failure(IllegalArgumentException("CSV line is empty"))
         }
     }
-}
+}//
