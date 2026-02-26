@@ -3,7 +3,7 @@ package data.datasource
 import data.datasource.model.*
 import domain.*
 import data.EcoSystemDataSource
-import domain.model.SubmissionType
+import domain.model.PerformanceSubmission.SubmissionType
 import java.io.File
 
 class CsvEcosystemDataSource private constructor(

@@ -4,7 +4,7 @@ import domain.model.PerformanceSubmission
 
 
 fun PerformanceRow.toDomain(): PerformanceSubmission =
-    PerformanceSubmission(
+    PerformanceSubmission.create(
         id = id,
         type = type,
         score = score,

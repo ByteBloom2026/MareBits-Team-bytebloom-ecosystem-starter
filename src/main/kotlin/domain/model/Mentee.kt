@@ -16,7 +16,7 @@ data class Mentee  private constructor(
        val menteeNameValidator = MenteeNameValidator()
         val menteeIdValidator=MenteeIdValidator()
 
-        fun create(name: String, teamId: String): Mentee {
+        fun create(id: String,name: String, teamId: String): Mentee {
             menteeNameValidator.validate(name)
             menteeIdValidator.validate(name)
             return Mentee(name, teamId)

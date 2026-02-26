@@ -18,16 +18,18 @@ data class Team  private constructor(
     companion object {
         val teamNameValidator=TeamNameValidator()
         val menteeNameValidator=MenteeNameValidator()
+
+        fun create(id: String,name: String,mentorLead: String,projects: Project?): Team {
+            teamNameValidator.validate(name)
+            menteeNameValidator.validate(mentorLead)
+            return Team(
+                id ,
+                name ,
+                mentorLead ,
+                projects
+            )
+        }
     }
 
-    fun create(id: String,name: String,mentorLead: String,project: Project): Team {
-        teamNameValidator.validate(name)
-        menteeNameValidator.validate(mentorLead)
-        return Team(
-            id ,
-            name ,
-            mentorLead ,
-            project
-        )
-    }
+
 }
