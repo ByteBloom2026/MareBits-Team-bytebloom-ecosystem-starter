@@ -28,7 +28,5 @@ val useCaseModule  = module {
     singleOf(::SearchTeamsByNameUseCase)
     singleOf(::GenerateCrossTeamPreformanceReportUseCase)
     singleOf(::TotalScore)
-
-//
-
+    singleOf(::SearchMenteesByNameUseCase)
 }
