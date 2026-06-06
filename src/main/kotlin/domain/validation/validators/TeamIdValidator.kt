@@ -12,7 +12,7 @@ class TeamIdValidator : EcosystemValidator<String> {
         if (!value.first().isLetter()) {
             throw NotCapitalizedNameException()
         }
-        if (!value.all { it.isLetter() }) {
+        if (!value.all { it.isLetter()|| it == '-'  }) {
             throw NameContainsInvalidCharactersException()
         }
         return  value.lowercase()
